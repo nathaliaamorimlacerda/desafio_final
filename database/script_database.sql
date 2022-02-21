@@ -17,5 +17,5 @@ client_id int not null,
 valor float not null,
 data datetime,
 PRIMARY KEY (id),
---FOREIGN KEY (client_id) REFERENCES tb_clients(id)
+FOREIGN KEY (client_id) REFERENCES tb_clients(id)
 );
