@@ -1,21 +1,21 @@
-CREATE DATABASE desafio_final;
-
-USE desafio_final;
-
-CREATE TABLE tb_clients(
-id int not null,
-nome varchar(250) not null,
-email varchar(250) not null,
-data_cadastro datetime not null,
-telefone varchar(16),
-PRIMARY KEY (id)
+CREATE DATABASE DESAFIO_FINAL;
+GO
+USE DESAFIO_FINAL;
+GO
+CREATE TABLE TB_CLIENTS(
+	ID INT NOT NULL
+	,NOME VARCHAR(250) NOT NULL
+	,EMAIL VARCHAR(250) NOT NULL
+	,DATA_CADASTRO DATETIME NOT NULL
+	,TELEFONE VARCHAR(16)
+	,PRIMARY KEY (ID)
 );
-
-CREATE TABLE tb_transaction(
-id int not null,
-client_id int not null,
-valor float not null,
-data datetime,
-PRIMARY KEY (id),
-FOREIGN KEY (client_id) REFERENCES tb_clients(id)
+GO
+CREATE TABLE TB_TRANSACTION(
+	ID INT NOT NULL
+	,CLIENT_ID INT NOT NULL
+	,VALOR FLOAT NOT NULL
+	,DATA DATETIME
+	,PRIMARY KEY (ID)
+	,FOREIGN KEY (CLIENT_ID) REFERENCES TB_CLIENTS(ID)
 );
