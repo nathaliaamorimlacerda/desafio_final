@@ -4,11 +4,11 @@ import pyodbc
 from dateutil import parser
 from datetime import date
 
-# Definindo o diretório principal aonde contem todos os arquivos csv
-pastaPrincipal = './csv-data'
+# Definindo o diretório principal onde contem todos os arquivos csv
+pasta_principal = './csv-data'
 
 # Varrendo o diretório principal para começar a leitura de todos os aquivos existentes
-for diretorio, subpastas, arquivos in os.walk(pastaPrincipal):
+for diretorio, subpastas, arquivos in os.walk(pasta_principal):
     for arquivo in arquivos:        
         # lendo o arquivo csv e atribuindo o conteudo na variavel data
         # no primeito parâmetro do método "read_csv()"" informamos o arquivo 
@@ -33,9 +33,9 @@ for diretorio, subpastas, arquivos in os.walk(pastaPrincipal):
         for row in df.itertuples():               
             # Recuperando o nome do aquivo que esta sendo trabalho e quebrando pelo "-".
             # desta forma conseguimos identificar se o arquivo é de cliente ou transação
-            tipoArquivo = arquivo.split('-')[0]
+            tipo_arquivo = arquivo.split('-')[0]
             
-            if tipoArquivo == 'clients':
+            if tipo_arquivo == 'clients':
                 print("Inserindo Cliente " + str(row[1]))
                 cursor.execute(
                             '''
@@ -48,7 +48,7 @@ for diretorio, subpastas, arquivos in os.walk(pastaPrincipal):
                             parser.parse(row[4]), # Coluna data de cadastro
                             row[5] # Coluna Telefone 
                             )
-            elif tipoArquivo == 'transaction':                
+            elif tipo_arquivo == 'transaction':                
                 print("Verificando se o cliente existe " + str(row[2]))
                 #Verificando se o ID do cliente existe na tabela de clientes
                 cursor.execute(
@@ -60,7 +60,7 @@ for diretorio, subpastas, arquivos in os.walk(pastaPrincipal):
                 records = cursor.fetchall()
 
                 # Verifico se a variável records esta vazia, pois caso esteja
-                # é porque o cliente não existe então precisamo inseri-lo antes 
+                # é porque o cliente não existe então precisamos inseri-lo antes 
                 # de inserir a transação
                 if len(records) > 0:
                     print("Inserindo Transação " + str(row[1]))     
