@@ -14,7 +14,7 @@ for diretorio, subpastas, arquivos in os.walk(pastaPrincipal):
         # no primeito parâmetro do método "read_csv()"" informamos o arquivo 
         # que aqui será definido em "os.path.join(diretorio, arquivo)"
         # e no segundo qual o separador utilizado
-        data = pd.read_csv (os.path.join(diretorio, arquivo), sep=";", encoding='latin-1')   
+        data = pd.read_csv (os.path.join(diretorio, arquivo), sep=";", encoding='UTF-8')   
 
         # Atribuindo o conteudo a um dataFrame
         df = pd.DataFrame(data)
