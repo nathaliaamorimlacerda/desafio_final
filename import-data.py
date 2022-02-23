@@ -49,7 +49,7 @@ for diretorio, subpastas, arquivos in os.walk(pastaPrincipal):
                             row[5] # Coluna Telefone 
                             )
             elif tipoArquivo == 'transaction':                
-                print("Verificando se o cliente existe " + str(row[2]))
+                print("Verificando se o cliente", str(row[2]), " existe")
                 #Verificando se o ID do cliente existe na tabela de clientes
                 cursor.execute(
                     '''
