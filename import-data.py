@@ -14,7 +14,7 @@ for diretorio, subpastas, arquivos in os.walk(pasta_principal):
         # no primeito parâmetro do método "read_csv()"" informamos o arquivo 
         # que aqui será definido em "os.path.join(diretorio, arquivo)"
         # e no segundo qual o separador utilizado
-        data = pd.read_csv (os.path.join(diretorio, arquivo), sep=";", encoding='latin-1')   
+        data = pd.read_csv (os.path.join(diretorio, arquivo), sep=";", encoding='UTF-8')   
 
         # Atribuindo o conteudo a um dataFrame
         df = pd.DataFrame(data)
@@ -48,8 +48,8 @@ for diretorio, subpastas, arquivos in os.walk(pasta_principal):
                             parser.parse(row[4]), # Coluna data de cadastro
                             row[5] # Coluna Telefone 
                             )
-            elif tipo_arquivo == 'transaction':                
-                print("Verificando se o cliente existe " + str(row[2]))
+            elif tipoArquivo == 'transaction':                
+                print("Verificando se o cliente", str(row[2]), " existe")
                 #Verificando se o ID do cliente existe na tabela de clientes
                 cursor.execute(
                     '''

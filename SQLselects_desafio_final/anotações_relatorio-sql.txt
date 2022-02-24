@@ -1,0 +1,27 @@
+select1
+quantidade de clientes = 401
+
+
+-----------------------------------------------------------------------
+select 2 - 6,722 linhas
+(nem todos os clientes fizeram transações pois aparecem valores e data null)
+
+select C.id, C.nome, T.data, T.valor
+	from tb_clients C
+left join tb_transaction T on C.id=T.client_id
+-----------------------------------------------------------------------
+select 3 - clientes sem transações - 341 linhas
+
+select C.id, C.nome, T.data, T.valor
+	from tb_clients C
+left join tb_transaction T on C.id=T.client_id
+where T.data is null
+order by C.id
+
+-----------------------------------------------------------------------
+select 4 - quantidade de transações por id (60 clientes fizeram transações)
+
+select T.client_id,
+	count (*) as "número de transações"
+	from tb_transaction T
+	group by T.client_id
